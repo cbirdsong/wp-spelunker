@@ -1,0 +1,81 @@
+.scrutineer-section {
+  display: grid;
+  grid-gap: 1rem;
+  max-width: 100%;
+  margin-bottom: 2rem;
+}
+
+.scrutineer-summary {
+  font-size: 0.9rem;
+}
+
+.scrutineer-details--total {
+  padding-top: 1rem;
+}
+
+.scrutineer-details summary {
+  cursor: pointer;
+  max-width: max-content;
+}
+.scrutineer-details[open] summary {
+  margin-bottom: 1rem;
+}
+
+.scrutineer-table {
+}
+.scrutineer-table .scrutineer-column-title {
+  width: 60%;
+}
+.scrutineer-table .scrutineer-column-count {
+  width: 3%;
+  width: 3ch;
+}
+.scrutineer-table .scrutineer-column-edit {
+  width: 3%;
+  width: 1.5rem;
+  text-align: right;
+}
+
+.scrutineer-status {
+  border-radius: 1em;
+  padding: 0 0.35em;
+  font-size: 0.95em;
+  color: #191e23;
+}
+.scrutineer-status--is-trash {
+  background-color: #f78b53;
+}
+.scrutineer-status--is-draft {
+  background-color: #ffd566;
+}
+.scrutineer-status--is-pending {
+  background-color: #ffd566;
+}
+.scrutineer-status--is-private {
+  background-color: #66c6e4;
+}
+.scrutineer-status--is-future {
+  background-color: #9b8bc3;
+}
+
+.scrutineer-row-info,
+.scrutineer-row-info * {
+  display: inline-block;
+  display: inline-flex;
+  margin: 0;
+}
+.scrutineer-row-info dd {
+  font-weight: 600;
+}
+.scrutineer-row-info dt {
+  text-transform: capitalize;
+}
+.scrutineer-row-info dt::after {
+  content: "/";
+  display: inline-block;
+  margin: 0 0.5ch;
+  opacity: 0.5;
+}
+.scrutineer-row-info dt:last-child::after {
+  content: none;
+}

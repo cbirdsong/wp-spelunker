@@ -1,0 +1,16 @@
+# dependencies
+/node_modules
+/vendor
+
+# secrets and errors
+.env
+.log
+/yarn-error.log
+
+# macOS related files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+### Keep Folders ###
+!**/*/.gitkeep
