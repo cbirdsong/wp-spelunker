@@ -14,7 +14,7 @@ Displays a list of the page templates and blocks your site is using.
 
 == Description ==
 
-Every wonder if you're actually using a page template? Now you can easily find out!
+Ever wonder which editor blocks and page templates a site actually uses? Now you can easily find out!
 
 Caveats: 
 
@@ -30,7 +30,7 @@ I'd eventually like to list:
 
 - Images
 - Custom fields / postmeta
-- Shortcodes (in the meantime, check out [Shortcodes in Use](https://wordpress.org/plugins/shortcodes-in-use/))
+- Shortcodes _(in the meantime, check out [Shortcodes in Use](https://wordpress.org/plugins/shortcodes-in-use/))_
 
 
 == Installation ==
@@ -39,6 +39,14 @@ I'd eventually like to list:
 2. Click on the button `Add new`
 3. Search for `Scrutineer` and click 'Install Now' or click on the `upload` link to upload `scrutineer.zip`
 4. Click on `Activate plugin`
+
+
+== Usage ==
+
+1. Look under `Tools` in the Admin menu
+2. Click `Scrutineer`
+3. Look at stuff!
+
 
 == Changelog ==
 
