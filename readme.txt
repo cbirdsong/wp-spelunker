@@ -5,7 +5,7 @@ Tags: admin
 Requires at least: 5.0
 Tested up to: 5.5.3
 Requires PHP: 7.3
-Stable tag: 0.1.0
+Stable tag: 0.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,8 +18,8 @@ Ever wonder which editor blocks and page templates a site actually uses? Now you
 
 Caveats: 
 
-- Page Templates are only detected on pages, not custom post types.
-- Reusable blocks are detected as "wp_block".
+- Page templates are only detected on pages, not custom post types.
+- I have not tested this extensively using lots of different third-party blocks.
 
 
 == Frequently Asked Questions ==
@@ -35,21 +35,26 @@ I'd eventually like to list:
 
 == Installation ==
 
-1. Download this repo.
+1. Download this repo as a zip file.
 1. Go to `Plugins` in the Admin menu
 2. Click on the button `Add new`
-3. Click on the `upload` link to upload `wp-spelunker.zip`
+3. Click on the `upload` link to upload the zip file
 4. Click on `Activate plugin`
 
 
 == Usage ==
 
 1. Look under `Tools` in the Admin menu
-2. Click `WP Spelunker`
+2. Click `Spelunker: Blocks` or `Spelunker: Templates`
 3. Look at stuff!
 
 
 == Changelog ==
+
+= 0.2.0: November 17, 2020 =
+* Split into separate pages for blocks/templates.
+* Add support for reusable blocks.
+* Group blocks by source/type.
 
 = 0.1.0: November 17, 2020 =
 * Initial release.

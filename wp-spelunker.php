@@ -4,13 +4,13 @@
  *
  * @package       WP Spelunker
  * @author        Cory Birdsong
- * @version       0.1.0
+ * @version       0.2.0
  *
  * @wordpress-plugin
  * Plugin Name:   WP Spelunker
  * Plugin URI:    https://github.com/cbirdsong/site-content-audit-wordpress-plugin
  * Description:   Lists the page templates and blocks your site is actively using.
- * Version:       0.1.0
+ * Version:       0.2.0
  * Author:        Cory Birdsong
  * Author URI:    https://birdsong.dev
  * License:       GPL-2.0+
@@ -26,7 +26,6 @@ class Spelunker {
 
 	public function __construct() {
 		add_action( 'admin_menu', array( $this, 'add_plugin_page' ) );
-		add_action( 'admin_init', array( $this, 'page_init' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ));
 	}
 
@@ -36,42 +35,46 @@ class Spelunker {
 
 	public function add_plugin_page() {
 		add_management_page(
-			'WP Spelunker', // page_title
-			'Spelunker', // menu_title
+			'WP Spelunker: Editor Blocks', // page_title
+			'Spelunker: Blocks', // menu_title
 			'manage_options', // capability
-			'wp-spelunker', // menu_slug
-			array( $this, 'create_admin_page' ) // function
+			'wp-spelunker-blocks', // menu_slug
+			array( $this, 'create_admin_page_blocks' ) // function
+		);
+		add_management_page(
+			'WP Spelunker: Page Templates', // page_title
+			'Spelunker: Templates', // menu_title
+			'manage_options', // capability
+			'wp-spelunker-templates', // menu_slug
+			array( $this, 'create_admin_page_blocks' ) // function
 		);
 	}
 
-	public function create_admin_page() {
+	public function create_admin_page_blocks() {
 		$this->spelunker_options = get_option( 'spelunker_option_name' ); ?>
 
 		<div class="wrap">
-			<h2><?php _e( 'WP Spelunker', 'wp-spelunker' ); ?></h2>
-			<p><?php _e( 'An overview of templates, shortcodes and blocks in use on your site.', 'spelunker' ); ?>
+			<h2><?php _e( 'WP Spelunker: Editor Blocks', 'wp-spelunker' ); ?></h2>
+			<p><?php _e( 'An overview blocks in use on your site.', 'wp-spelunker' ); ?>
 
 			<?php
-				do_settings_sections( 'spelunker-admin' );
+				require_once plugin_dir_path( __FILE__ ) . 'includes/editor-blocks.php';
 			?>
 		</div>
 	<?php }
 
-	public function page_init() {
-		add_settings_section(
-			'spelunker_setting_section_editor_blocks', // id
-			'Editor Blocks', // title
-			array( $this, 'section_editor_blocks' ), // callback
-			'spelunker-admin' // page
-		);
+	public function create_admin_page_templates() {
+		$this->spelunker_options = get_option( 'spelunker_option_name' ); ?>
 
-		add_settings_section(
-			'spelunker_setting_section_page_templates', // id
-			'Page Templates', // title
-			array( $this, 'section_page_templates' ), // callback
-			'spelunker-admin' // page
-		);
-	}
+		<div class="wrap">
+			<h2><?php _e( 'WP Spelunker: Page Templates', 'wp-spelunker' ); ?></h2>
+			<p><?php _e( 'An overview of page templates in use on your site.', 'wp-spelunker' ); ?>
+
+			<?php
+				require_once plugin_dir_path( __FILE__ ) . 'includes/page-templates.php';
+			?>
+		</div>
+	<?php }
 
 	public function section_editor_blocks() {
 		require_once plugin_dir_path( __FILE__ ) . 'includes/editor-blocks.php';

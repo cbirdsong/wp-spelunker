@@ -1,7 +1,7 @@
 <?php
 $templates = wp_get_theme()->get_page_templates();
-?>
 
+if (!empty($templates)): ?>
 <div class="spelunker-section">
 	<?php foreach ($templates as $file => $name):
 		$query = new WP_Query([
@@ -16,15 +16,14 @@ $templates = wp_get_theme()->get_page_templates();
 		]);
 
 		$page_count = sizeof($query->posts);
-		var_dump($page_count);
 		?>
 		<?php if ($page_count > 0): ?>
 		<details class="spelunker-details">
-			<summary class="spelunker-summary"><strong><?php echo $file; ?></strong>: <strong><?php echo number_format($page_count); ?></strong> <?php _e( 'pages', 'spelunker' ) ?></summary>
+			<summary class="spelunker-summary"><strong><?php echo $file; ?></strong>: <strong><?php echo number_format($page_count); ?></strong> <?php _e( 'pages', 'wp-spelunker' ) ?></summary>
 			<table class="widefat fixed striped | spelunker-table" cellspacing="0">
 				<thead>
 					<tr class="spelunker-row">
-						<th class="manage-column | spelunker-column-title"><?php _e( 'Title', 'spelunker' ) ?></th>
+						<th class="manage-column | spelunker-column-title"><?php _e( 'Title', 'wp-spelunker' ) ?></th>
 						<th class="manage-column | spelunker-column-edit" aria-label="Actions"></th>
 					</tr>
 				</thead>
@@ -47,7 +46,7 @@ $templates = wp_get_theme()->get_page_templates();
 						<td class="spelunker-column-edit">
 							<a href="/wp-admin/post.php?post=<?php echo $post_id; ?>&action=edit">
 								<span class="dashicons dashicons-edit"></span>
-								<?php _e( 'Edit', 'spelunker' ) ?>
+								<?php _e( 'Edit', 'wp-spelunker' ) ?>
 							</a>
 						</td>
 					</tr>
@@ -57,8 +56,11 @@ $templates = wp_get_theme()->get_page_templates();
 		</details> 
 		<?php else: ?>
 		<div class="spelunker-summary">
-			<strong><?php echo $file; ?></strong>: <?php _e( 'Not in use.', 'spelunker' ) ?>
+			<strong><?php echo $file; ?></strong>: <?php _e( 'Not in use.', 'wp-spelunker' ) ?>
 		</div>
 		<?php endif; ?>
 	<?php endforeach; ?>
 </div>
+<?php else: ?>
+	<strong><?php _e( 'No templates found.', 'wp-spelunker' ) ?></strong>
+<?php endif; ?>

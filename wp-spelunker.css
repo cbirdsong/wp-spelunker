@@ -24,11 +24,9 @@
 .spelunker-table {
 }
 .spelunker-table .spelunker-column-title {
-	width: 60%;
 }
-.spelunker-table .spelunker-column-count {
-	width: 3%;
-	width: 3ch;
+.spelunker-table .spelunker-column-type {
+	width: 10%;
 }
 .spelunker-table .spelunker-column-edit {
 	width: 3%;
