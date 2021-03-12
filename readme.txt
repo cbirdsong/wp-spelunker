@@ -1,4 +1,4 @@
-=== Scrutineer ===
+=== WP Spelunker ===
 Author URI: birdsong.dev
 Plugin URI: https://birdsong.dev
 Tags: admin
@@ -19,7 +19,7 @@ Ever wonder which editor blocks and page templates a site actually uses? Now you
 Caveats: 
 
 - Page Templates are only detected on pages, not custom post types.
-- Reusable blocks are not detected.
+- Reusable blocks are detected as "wp_block".
 
 
 == Frequently Asked Questions ==
@@ -35,16 +35,17 @@ I'd eventually like to list:
 
 == Installation ==
 
+1. Download this repo.
 1. Go to `Plugins` in the Admin menu
 2. Click on the button `Add new`
-3. Search for `Scrutineer` and click 'Install Now' or click on the `upload` link to upload `scrutineer.zip`
+3. Click on the `upload` link to upload `wp-spelunker.zip`
 4. Click on `Activate plugin`
 
 
 == Usage ==
 
 1. Look under `Tools` in the Admin menu
-2. Click `Scrutineer`
+2. Click `WP Spelunker`
 3. Look at stuff!
 
 

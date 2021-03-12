@@ -2,7 +2,7 @@
 $templates = wp_get_theme()->get_page_templates();
 ?>
 
-<div class="scrutineer-section">
+<div class="spelunker-section">
 	<?php foreach ($templates as $file => $name):
 		$query = new WP_Query([
 			'post_type' => 'any',
@@ -16,15 +16,16 @@ $templates = wp_get_theme()->get_page_templates();
 		]);
 
 		$page_count = sizeof($query->posts);
+		var_dump($page_count);
 		?>
 		<?php if ($page_count > 0): ?>
-		<details class="scrutineer-details">
-			<summary class="scrutineer-summary"><strong><?php echo $file; ?></strong>: <strong><?php echo number_format($page_count); ?></strong> <?php _e( 'pages', 'scrutineer' ) ?></summary>
-			<table class="widefat fixed striped scrutineer-table" cellspacing="0">
+		<details class="spelunker-details">
+			<summary class="spelunker-summary"><strong><?php echo $file; ?></strong>: <strong><?php echo number_format($page_count); ?></strong> <?php _e( 'pages', 'spelunker' ) ?></summary>
+			<table class="widefat fixed striped | spelunker-table" cellspacing="0">
 				<thead>
-					<tr class="scrutineer-row">
-						<th class="manage-column scrutineer-column-title"><?php _e( 'Title', 'scrutineer' ) ?></th>
-						<th class="manage-column scrutineer-column-edit" aria-label="Actions"></th>
+					<tr class="spelunker-row">
+						<th class="manage-column | spelunker-column-title"><?php _e( 'Title', 'spelunker' ) ?></th>
+						<th class="manage-column | spelunker-column-edit" aria-label="Actions"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -32,21 +33,21 @@ $templates = wp_get_theme()->get_page_templates();
 					$post_id = $post->ID; 
 					$status = get_post_status ( $post_id );
 					?>
-					<tr class="scrutineer-row">
-						<td class="scrutineer-column-title column-title column-primary">
+					<tr class="spelunker-row">
+						<td class="column-title column-primary | spelunker-column-title">
 							<strong>
 								<a class="row-title" href="<?php echo get_permalink($post_id); ?>">
 									<? echo get_the_title($post_id); ?>
 								</a>
 							</strong>
 							<?php if ($status != "publish"): ?>
-								<span class="scrutineer-status scrutineer-status--is-<?php echo $status; ?>"><?php echo $status; ?></span>
+								<span class="spelunker-status spelunker-status--is-<?php echo $status; ?>"><?php echo $status; ?></span>
 							<?php endif; ?>
 						</td>
-						<td class="scrutineer-column-edit">
+						<td class="spelunker-column-edit">
 							<a href="/wp-admin/post.php?post=<?php echo $post_id; ?>&action=edit">
 								<span class="dashicons dashicons-edit"></span>
-								<?php _e( 'Edit', 'scrutineer' ) ?>
+								<?php _e( 'Edit', 'spelunker' ) ?>
 							</a>
 						</td>
 					</tr>
@@ -55,8 +56,8 @@ $templates = wp_get_theme()->get_page_templates();
 			</table>
 		</details> 
 		<?php else: ?>
-		<div class="scrutineer-summary">
-			<strong><?php echo $file; ?></strong>: <?php _e( 'Not in use.', 'scrutineer' ) ?>
+		<div class="spelunker-summary">
+			<strong><?php echo $file; ?></strong>: <?php _e( 'Not in use.', 'spelunker' ) ?>
 		</div>
 		<?php endif; ?>
 	<?php endforeach; ?>
