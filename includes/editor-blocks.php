@@ -25,26 +25,43 @@ foreach ($queries as $query) {
 		$post_blocks = parse_blocks($post->post_content);
 
 		foreach ($post_blocks as $block) {
-			if (array_key_exists('blockName', $block) && isset($block['blockName'])) {
-				if ($block['blockName'] === 'core/block' && isset($block['attrs']) && isset($block['attrs']['ref'])) {
-					$block_category = 'reusable';
-					$block_name = get_the_title($block['attrs']['ref']);
-				}
-				elseif (strpos($block['blockName'], '/')) {
-					$block_name_array = explode('/', $block['blockName']);
+			ksort($block);
+			// var_dump($block);
+			// var_dump($block['blockName']);
 
-					$block_category = array_shift($block_name_array);
-					$block_name = implode('', $block_name_array);
+			$ref = '';
+			array_walk_recursive( $block, function($value, $key) use (&$all_blocks, &$post, &$ref) {
+				if ($key === 'ref' && !empty($value)) {
+					$ref = $value;
 				}
-				else {
+				if ($key === 'blockName' && !empty($value)) {
+					$block_info = [];
 
-					$block_category = 'other';
-					$block_name = $block['blockName'];
+					if ($value === 'core/block' && !empty($ref)) {
+						$block_info['category'] = 'reusable';
+						$block_info['name'] = get_the_title($ref);
+					}
+					elseif ($value === 'core/block' && empty($ref)) {
+						$block_info['category'] = 'reusable';
+						$block_info['name'] = '??? (resuable but nested inside another block)';
+					}
+					elseif (strpos($value, '/')) {
+						$block_name_array = explode('/', $value);
+
+						$block_info['category'] = array_shift($block_name_array);
+						$block_info['name'] = implode('', $block_name_array);
+					}
+					else {
+						$block_info['category'] = 'other';
+						$block_info['name'] = $value;
+					}
+
+
+					$all_blocks[$block_info['category']][$block_info['name']]['total'] += 1;
+					$all_blocks[$block_info['category']][$block_info['name']]['posts'][$post->ID] += 1;
 				}
-
-				$all_blocks[$block_category][$block_name]['total'] += 1;
-				$all_blocks[$block_category][$block_name]['posts'][$post->ID] += 1;
-			}
+			}, $all_blocks);
+			// var_dump($all_blocks);
 		}
 	}
 }

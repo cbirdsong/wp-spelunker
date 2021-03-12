@@ -1,16 +1,16 @@
 <?php
 /**
- * WP Spelunker
+ * Spelunker
  *
- * @package       WP Spelunker
+ * @package       Spelunker
  * @author        Cory Birdsong
  * @version       0.2.0
  *
  * @wordpress-plugin
- * Plugin Name:   WP Spelunker
- * Plugin URI:    https://github.com/cbirdsong/site-content-audit-wordpress-plugin
- * Description:   Lists the page templates and blocks your site is actively using.
- * Version:       0.2.0
+ * Plugin Name:   Spelunker
+ * Plugin URI:    https://github.com/cbirdsong/wp-spelunker
+ * Description:   Displays a list of the page templates and blocks your site is using.
+ * Version:       0.2.1
  * Author:        Cory Birdsong
  * Author URI:    https://birdsong.dev
  * License:       GPL-2.0+
@@ -38,14 +38,14 @@ class Spelunker {
 			'WP Spelunker: Editor Blocks', // page_title
 			'Spelunker: Blocks', // menu_title
 			'manage_options', // capability
-			'wp-spelunker-blocks', // menu_slug
+			'spelunker-blocks', // menu_slug
 			array( $this, 'create_admin_page_blocks' ) // function
 		);
 		add_management_page(
 			'WP Spelunker: Page Templates', // page_title
 			'Spelunker: Templates', // menu_title
 			'manage_options', // capability
-			'wp-spelunker-templates', // menu_slug
+			'spelunker-templates', // menu_slug
 			array( $this, 'create_admin_page_blocks' ) // function
 		);
 	}

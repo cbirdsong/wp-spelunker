@@ -3,23 +3,25 @@ $templates = wp_get_theme()->get_page_templates();
 
 if (!empty($templates)): ?>
 <div class="spelunker-section">
-	<?php foreach ($templates as $file => $name):
-		$query = new WP_Query([
-			'post_type' => 'any',
-			'posts_per_page' => -1,
-			'meta_query' => [
-				[
-					'key' => '_wp_page_template',
-					'value' => $file,
-				],
-			],
-		]);
+	<?php foreach ($templates as $name => $file):
+	var_dump($name);
+	var_dump($file);
+		// $query = new WP_Query([
+		// 	'post_type' => 'any',
+		// 	'posts_per_page' => -1,
+		// 	'meta_query' => [
+		// 		[
+		// 			'key' => '_wp_page_template',
+		// 			'value' => $file,
+		// 		],
+		// 	],
+		// ]);
 
 		$page_count = sizeof($query->posts);
 		?>
 		<?php if ($page_count > 0): ?>
 		<details class="spelunker-details">
-			<summary class="spelunker-summary"><strong><?php echo $file; ?></strong>: <strong><?php echo number_format($page_count); ?></strong> <?php _e( 'pages', 'wp-spelunker' ) ?></summary>
+			<summary class="spelunker-summary"><strong><?= $name; ?></strong> (<?= $file; ?>): <strong><?php echo number_format($page_count); ?></strong> <?php _e( 'pages', 'wp-spelunker' ) ?></summary>
 			<table class="widefat fixed striped | spelunker-table" cellspacing="0">
 				<thead>
 					<tr class="spelunker-row">
