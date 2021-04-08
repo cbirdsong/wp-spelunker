@@ -1,21 +1,24 @@
+<div class="spelunker-section">
+
+<h2>Page Templates</h2>
+
 <?php
 $templates = wp_get_theme()->get_page_templates();
 
 if (!empty($templates)): ?>
-<div class="spelunker-section">
 	<?php foreach ($templates as $name => $file):
-	var_dump($name);
-	var_dump($file);
-		// $query = new WP_Query([
-		// 	'post_type' => 'any',
-		// 	'posts_per_page' => -1,
-		// 	'meta_query' => [
-		// 		[
-		// 			'key' => '_wp_page_template',
-		// 			'value' => $file,
-		// 		],
-		// 	],
-		// ]);
+	// var_dump($name);
+	// var_dump($file);
+		$query = new WP_Query([
+			'post_type' => 'any',
+			'posts_per_page' => -1,
+			'meta_query' => [
+				[
+					'key' => '_wp_page_template',
+					'value' => $file,
+				],
+			],
+		]);
 
 		$page_count = sizeof($query->posts);
 		?>
@@ -62,7 +65,7 @@ if (!empty($templates)): ?>
 		</div>
 		<?php endif; ?>
 	<?php endforeach; ?>
-</div>
 <?php else: ?>
 	<strong><?php _e( 'No templates found.', 'wp-spelunker' ) ?></strong>
 <?php endif; ?>
+</div>

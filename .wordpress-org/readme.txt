@@ -19,9 +19,9 @@ Ever wonder which editor blocks and page templates a site actually uses? Now you
 Caveats: 
 
 - Nested reusable blocks are not listed by name, only that the page contains a nested reusable block.
+- Untitled reusable blocks are all grouped under a single item
 - Page templates are only detected on pages, not custom post types.
 - I have not tested this extensively using lots of different third-party blocks.
-
 
 == Frequently Asked Questions ==
 
@@ -29,8 +29,8 @@ Caveats:
 
 I'd eventually like to list:
 
-- Images
-- Custom fields / postmeta
+- Images used in content
+- Advanced Custom Fields
 - Shortcodes _(in the meantime, check out [Shortcodes in Use](https://wordpress.org/plugins/shortcodes-in-use/))_
 
 
@@ -46,11 +46,15 @@ I'd eventually like to list:
 == Usage ==
 
 1. Go to `Tools` in the Admin menu
-2. Click `Spelunker: Blocks` or `Spelunker: Templates`
+2. Click `Spelunker` and select a tab.
 3. Look at stuff!
 
 
 == Changelog ==
+
+= 0.4.0: March 12, 2021 =
+* Reorganize UI to use tabs.
+* Featured Image support.
 
 = 0.3.0: March 12, 2021 =
 * Add basic support for nested blocks and reusable blocks.

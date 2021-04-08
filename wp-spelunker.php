@@ -35,54 +35,64 @@ class Spelunker {
 
 	public function add_plugin_page() {
 		add_management_page(
-			'WP Spelunker: Editor Blocks', // page_title
-			'Spelunker: Blocks', // menu_title
+			'WP Spelunker', // page_title
+			'Spelunker', // menu_title
 			'manage_options', // capability
-			'spelunker-blocks', // menu_slug
-			array( $this, 'create_admin_page_blocks' ) // function
-		);
-		add_management_page(
-			'WP Spelunker: Page Templates', // page_title
-			'Spelunker: Templates', // menu_title
-			'manage_options', // capability
-			'spelunker-templates', // menu_slug
-			array( $this, 'create_admin_page_blocks' ) // function
+			'spelunker', // menu_slug
+			array( $this, 'create_admin_page' ) // function
 		);
 	}
 
-	public function create_admin_page_blocks() {
-		$this->spelunker_options = get_option( 'spelunker_option_name' ); ?>
+	public function create_admin_page() {
+		$this->spelunker_options = get_option( 'spelunker_option_name' ); 
+		
+		$sections = [
+			[
+				'name' => '<span title="About">⛏&nbsp;<span class="screen-reader-text">About</span></span>',
+				'slug' => 'about',
+				'template' => 'about.php'
+			],
+			[
+				'name' => 'Editor Blocks',
+				'slug' => 'editor-blocks',
+				'template' => 'editor-blocks.php'
+			],
+			[
+				'name' => 'Featured Images',
+				'slug' => 'images',
+				'template' => 'images.php'
+			],
+			[
+				'name' => 'Page Templates',
+				'slug' => 'page-templates',
+				'template' => 'page-templates.php'
+			],
+		];
+		
+		$default_tab = 'about';
+  	$tab = isset($_GET['tab']) ? $_GET['tab'] : $default_tab;
+
+		?>
 
 		<div class="wrap">
-			<h2><?php _e( 'WP Spelunker: Editor Blocks', 'wp-spelunker' ); ?></h2>
-			<p><?php _e( 'An overview blocks in use on your site.', 'wp-spelunker' ); ?>
+			<h1><?php _e( 'WP Spelunker', 'wp-spelunker' ); ?></h1>
 
-			<?php
-				require_once plugin_dir_path( __FILE__ ) . 'includes/editor-blocks.php';
-			?>
+			<nav class="nav-tab-wrapper">
+			<?php foreach ($sections as $section): ?>
+				<a href="?page=spelunker&tab=<?= $section['slug'] ?>" class="nav-tab <?php if($tab===$section['slug']):?>nav-tab-active<?php endif; ?>">
+					<?= $section['name'] ?>
+				</a>
+			<?php endforeach; ?>
+			</nav>
+			
+			<div class="tab-content">
+			<?php 
+			if (!empty($tab)) {
+				require_once plugin_dir_path( __FILE__ ) . 'sections/' . $tab . '.php';
+			} ?>
+    	</div>
 		</div>
 	<?php }
-
-	public function create_admin_page_templates() {
-		$this->spelunker_options = get_option( 'spelunker_option_name' ); ?>
-
-		<div class="wrap">
-			<h2><?php _e( 'WP Spelunker: Page Templates', 'wp-spelunker' ); ?></h2>
-			<p><?php _e( 'An overview of page templates in use on your site.', 'wp-spelunker' ); ?>
-
-			<?php
-				require_once plugin_dir_path( __FILE__ ) . 'includes/page-templates.php';
-			?>
-		</div>
-	<?php }
-
-	public function section_editor_blocks() {
-		require_once plugin_dir_path( __FILE__ ) . 'includes/editor-blocks.php';
-	}
-	public function section_page_templates() {
-		require_once plugin_dir_path( __FILE__ ) . 'includes/page-templates.php';
-	}
-
 }
 if ( is_admin() ) {
 	$spelunker = new Spelunker();

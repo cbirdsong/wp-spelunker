@@ -1,6 +1,6 @@
 <?php
 
-$all_blocks = ['core' => [], 'core-embed' => [], 'reusable' => []];
+$all_blocks = ['core' => [], 'reusable' => []];
 
 $classic_posts = [];
 
@@ -25,9 +25,7 @@ foreach ($queries as $query) {
 		$post_blocks = parse_blocks($post->post_content);
 
 		foreach ($post_blocks as $block) {
-			ksort($block);
-			// var_dump($block);
-			// var_dump($block['blockName']);
+			ksort($block); // This only works with nested blocks for complicated stupid reasons that are solved by sorting the keys.
 
 			$ref = '';
 			array_walk_recursive( $block, function($value, $key) use (&$all_blocks, &$post, &$ref) {
