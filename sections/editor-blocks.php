@@ -38,6 +38,8 @@ foreach ($queries as $query) {
 					if ($value === 'core/block' && !empty($ref)) {
 						$block_info['category'] = 'reusable';
 						$block_info['name'] = get_the_title($ref);
+
+						$all_blocks[$block_info['category']][$block_info['name']]['id'] = $ref;
 					}
 					elseif ($value === 'core/block' && empty($ref)) {
 						$block_info['category'] = 'reusable';
@@ -53,7 +55,6 @@ foreach ($queries as $query) {
 						$block_info['category'] = 'other';
 						$block_info['name'] = $value;
 					}
-
 
 					$all_blocks[$block_info['category']][$block_info['name']]['total'] += 1;
 					$all_blocks[$block_info['category']][$block_info['name']]['posts'][$post->ID] += 1;
@@ -87,6 +88,10 @@ foreach ($queries as $query) {
 				</small>
 			</summary>
 			<table class="wp-list-table widefat fixed striped | spelunker-table" cellspacing="0">
+				<caption class="spelunker-caption">
+					<?php if (!empty($block['id'])) { ?><a href="/wp-admin/post.php?post=<?php echo $block['id']; ?>&action=edit"><em>#<?php echo $block['id']; ?></em></a><?php } ?>
+					<strong><?php echo $name; ?></strong>
+				</caption>
 				<thead>
 					<tr class="spelunker-row">
 						<th class="spelunker-column-title | column-title column-primary"><?php _e( 'Title', 'wp-spelunker' ) ?></th>
@@ -132,6 +137,8 @@ foreach ($queries as $query) {
 						</tr>
 					<?php endforeach; ?>
 				</tbody>
+				<tfoot>
+				</tfoot>
 			</table>
 		</details>
 		<?php endforeach; ?>
