@@ -30,7 +30,7 @@ class Spelunker {
 	}
 
 	public function enqueue_styles() {
-		wp_enqueue_style( 'wp-spelunker', plugin_dir_url( __FILE__ ) . 'wp-spelunker.css', array(), plugin_dir_path( __FILE__ ) . 'wp-spelunker.css', 'all' );
+		wp_enqueue_style( 'wp-spelunker', plugin_dir_url( __FILE__ ) . 'wp-spelunker.css', array(), filemtime(plugin_dir_path( __FILE__ ) . 'wp-spelunker.css'), 'all' );
 	}
 
 	public function add_plugin_page() {
