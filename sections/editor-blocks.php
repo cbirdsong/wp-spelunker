@@ -65,7 +65,9 @@ foreach ($queries as $query) {
 	}
 }
 
-// ksort($all_blocks);
+foreach ($all_blocks as $category => $blocks) {
+	ksort($all_blocks[$category]);
+}
 ?>
 
 <div class="spelunker-section">
@@ -89,7 +91,7 @@ foreach ($queries as $query) {
 			</summary>
 			<table class="wp-list-table widefat fixed striped | spelunker-table" cellspacing="0">
 				<caption class="spelunker-caption">
-					<?php if (!empty($block['id'])) { ?><a href="/wp-admin/post.php?post=<?php echo $block['id']; ?>&action=edit"><em>#<?php echo $block['id']; ?></em></a><?php } ?>
+					<?php if (!empty($block['id'])) { ?><a href="/wp-admin/post.php?post=<?php echo $block['id']; ?>&action=edit"><em>#<?php echo $block['id']; ?></em></a>: <?php } ?>
 					<strong><?php echo $name; ?></strong>
 				</caption>
 				<thead>
