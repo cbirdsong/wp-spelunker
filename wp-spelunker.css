@@ -39,21 +39,29 @@
 	padding: 0 0.35em;
 	font-size: 0.95em;
 	color: #191e23;
+	background-color: #dedede;
 }
 .spelunker-status--is-trash {
 	background-color: #f78b53;
 }
+.spelunker-status--is-pending,
 .spelunker-status--is-draft {
 	background-color: #ffd566;
 }
-.spelunker-status--is-pending {
-	background-color: #ffd566;
-}
 .spelunker-status--is-private {
-	background-color: #66c6e4;
 }
 .spelunker-status--is-future {
 	background-color: #9b8bc3;
+}
+
+.spelunker-warning {
+	border-radius: 0.5em;
+	padding: 0.25em 0.5em;
+	font-weight: bold;
+}
+.spelunker-warning--has-missing-info {
+	color: white;
+	background-color: #cf0000;
 }
 
 .spelunker-row-info,
@@ -76,4 +84,10 @@
 }
 .spelunker-row-info dt:last-child::after {
 	content: none;
+}
+
+.spelunker-caption {
+	text-align: left;
+	padding: 0.5rem 0;
+	font-weight: bold;
 }

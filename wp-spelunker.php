@@ -4,13 +4,13 @@
  *
  * @package       Spelunker
  * @author        Cory Birdsong
- * @version       0.2.0
+ * @version       0.5.0
  *
  * @wordpress-plugin
  * Plugin Name:   Spelunker
  * Plugin URI:    https://github.com/cbirdsong/wp-spelunker
- * Description:   Displays a list of the page templates and blocks your site is using.
- * Version:       0.2.1
+ * Description:   Displays lists of stuff your site is using.
+ * Version:       0.5.0
  * Author:        Cory Birdsong
  * Author URI:    https://birdsong.dev
  * License:       GPL-2.0+
@@ -57,16 +57,21 @@ class Spelunker {
 				'slug' => 'editor-blocks',
 				'template' => 'editor-blocks.php'
 			],
+			// [
+			// 	'name' => 'Unused Images',
+			// 	'slug' => 'unused-images',
+			// 	'template' => 'unused-images.php'
+			// ],
 			[
-				'name' => 'Featured Images',
-				'slug' => 'images',
-				'template' => 'images.php'
+				'name' => 'Post SEO Info',
+				'slug' => 'post-seo',
+				'template' => 'post-seo.php'
 			],
-			[
-				'name' => 'Page Templates',
-				'slug' => 'page-templates',
-				'template' => 'page-templates.php'
-			],
+			// [
+			// 	'name' => 'Page Templates',
+			// 	'slug' => 'page-templates',
+			// 	'template' => 'page-templates.php'
+			// ],
 		];
 		
 		$default_tab = 'about';

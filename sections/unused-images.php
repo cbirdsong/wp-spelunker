@@ -1,13 +1,8 @@
 <?php
 
-$all_images = new WP_Query([
-	'post_type' => 'attachment',
-	'posts_per_page' => -1,
-]);
 $used_images = [];
 
-$image_blocks = ['core/image'];
-// $image_blocks = ['core/cover'];
+$core_blocks = ['core/image', 'core/cover'];
 
 $queries = [];
 $queries[] = new WP_Query([
@@ -23,7 +18,7 @@ foreach ($queries as $query) {
 	foreach ($query->posts as $post) {
 
 		if (has_post_thumbnail($post)) {
-			$used_images[get_post_thumbnail_id($post)]['featured'][] = $post->ID;
+			$used_images[] = get_post_thumbnail_id($post);
 		}
 
 		if (has_blocks($post)) {
@@ -31,13 +26,9 @@ foreach ($queries as $query) {
 
 			foreach ($post_blocks as $block) {
 				ksort($block);
-				if (in_array($block['blockName'], $image_blocks)) {
+				if (in_array($block['blockName'], $core_blocks)) {
 					if (!empty($block['attrs']['id'])) {
-						if (get_post_type($block['attrs']['id']) === "attachment") {
-						// var_dump($block);
-						// var_dump($block['attrs']['id']);
-						// $used_images[$block['attrs']['id']]['blocks'][$post->ID][] = $block['blockName'];
-						}
+						$used_images[] = $block['attrs']['id'];
 					}
 				}
 			}
@@ -45,6 +36,15 @@ foreach ($queries as $query) {
 
 	}
 }
+
+
+$unused_images = new WP_Query([
+	'post_type' => 'attachment',
+	'posts_per_page' => -1,
+	// 'post__not_in' => $used_images,
+]);
+
+var_dump($unused_images);
 ?>
 
 
@@ -53,6 +53,7 @@ foreach ($queries as $query) {
 	<table class="wp-list-table widefat striped | spelunker-table" cellspacing="0">
 		<thead>
 			<tr class="spelunker-row">
+				<th class="spelunker-column-image | column-"><?php _e( 'ID', 'wp-spelunker' ) ?></th>
 				<th class="spelunker-column-image | column-"><?php _e( 'Image', 'wp-spelunker' ) ?></th>
 				<th class="spelunker-column-title | column-title column-primary"><?php _e( 'Title', 'wp-spelunker' ) ?></th>
 				<th class="spelunker-column-edit | manage-column" aria-label="Actions"></th>
@@ -60,9 +61,12 @@ foreach ($queries as $query) {
 		</thead>
 		<tbody>
 			<?php 
-			foreach ($used_images as $image_id => $image): 
+			foreach ($used_images as $image_id): 
 				?>
 				<tr class=" | spelunker-row">
+					<td class="spelunker-column-id | column-comments">
+						<?= $image_id ?>
+					</td>
 					<td class="spelunker-column-image | column-">
 						<?= wp_get_attachment_image($image_id, 'thumbnail'); ?>
 					</td>

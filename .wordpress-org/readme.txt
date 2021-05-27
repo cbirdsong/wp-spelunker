@@ -5,11 +5,11 @@ Tags: admin
 Requires at least: 5.0
 Tested up to: 5.7
 Requires PHP: 7.3
-Stable tag: 0.3.0
+Stable tag: 0.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Displays a list of the page templates and blocks your site is using.
+Displays a list of stuff your site is using.
 
 
 == Description ==
@@ -30,7 +30,8 @@ Caveats:
 I'd eventually like to list:
 
 - Images used in content
-- Advanced Custom Fields
+- Advanced Custom Fields on posts
+- Advanced Custom Fields in ACF editor blocks
 - Shortcodes _(in the meantime, check out [Shortcodes in Use](https://wordpress.org/plugins/shortcodes-in-use/))_
 
 
@@ -52,9 +53,12 @@ I'd eventually like to list:
 
 == Changelog ==
 
-= 0.4.0: March 12, 2021 =
+= 0.5.0: March 12, 2021 =
+* Add SEO Info.
+* Remove page template support due to bug.
+
+= 0.5.0: March 12, 2021 =
 * Reorganize UI to use tabs.
-* Featured Image support.
 
 = 0.3.0: March 12, 2021 =
 * Add basic support for nested blocks and reusable blocks.
